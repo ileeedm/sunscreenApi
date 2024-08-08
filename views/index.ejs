@@ -11,15 +11,47 @@
 </head>
 
 <body>
-  <h1> Uv factor is <%= uvFactor %> </h1>
- <% if (uvFactor <= 5) { %>
+  <% if (locals.error) { %>
+    <div class="error-message">
+      <p><%= error %></p>
+    </div>
+  <% }else{   %>
+
+  
+    <% if (locals.lattitude && locals.longitude ) { %>
+    <h1> Uv factor is <%= uvFactor %> </h1>
+  <% if (uvFactor <= 5) { %>
 
   <h2> No sun screen is needed today </h2>
   <% } else { %>
     <h2> 
-      <%= uvFactor %>
+     Sunscreen should be applied
     </h2>
     <% } %>
+  
+    <% } else { %>
+      <h2 id="parametars"> 
+     Please enter both fields with parametar
+       </h2>
+    <% } %>
+    <% } %>
+  </div>
+
+  <form action="/" method="post">
+    <label for="headline">Longitude</label>
+    <input type="text" id="idInput" name="longitude" >
+
+    <label for="secretInput">Latitude</label>
+    <input type="text" id="secretInput" name="lattitude" >
+
+ 
+    <input id="post" type="submit" value="POST" >
+   
+  </form>
+</div>
+
+   
+  <script src="index.js" type="module"></script>   
 </body>
 
 </html>

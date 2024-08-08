@@ -20,104 +20,101 @@ h1 {
 }
 
 h2 {
-  color: rgb(245, 245, 21);
-  font-family: "Titan One", cursive;
+  color: rgb(234, 230, 17);
+ 
   margin-bottom: 20px;
 }
-.card {
-  background: url("../images/whisper-img.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: var(--card-width);
-  height: var(--card-height);
-  padding: 3px;
-  position: relative;
-  border-radius: 6px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  font-size: 1.5em;
-  color: rgb(88 199 250 / 0%);
-  font-family: "Gloria Hallelujah", cursive;
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover {
-  color: rgb(88 199 250 / 100%);
-  transition: color 1s;
-}
-.card:hover:before,
-.card:hover:after {
-  animation: none;
-  opacity: 0;
+.error-message{
+  color: rgb(142, 30, 30);
+  font-size: large;
+  margin-bottom: 20px;
 }
 
-.card::before {
-  content: "";
-  width: 104%;
-  height: 102%;
-  border-radius: 8px;
-  background-image: linear-gradient(
-    var(--rotate),
-    #5ddcff,
-    #3c67e3 43%,
-    #4e00c2
-  );
-  position: absolute;
-  z-index: -1;
-  top: -1%;
-  left: -2%;
-  animation: spin 2.5s linear infinite;
+form {
+  margin-top: 20px;
 }
 
-.card::after {
-  position: absolute;
-  content: "";
-  top: calc(var(--card-height) / 6);
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  transform: scale(0.8);
-  filter: blur(calc(var(--card-height) / 6));
-  background-image: linear-gradient(
-    var(--rotate),
-    #5ddcff,
-    #3c67e3 43%,
-    #4e00c2
-  );
-  opacity: 1;
-  transition: opacity 0.5s;
-  animation: spin 2.5s linear infinite;
-}
-@property --rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
-}
-
-@keyframes spin {
-  0% {
-    --rotate: 0deg;
-  }
-  100% {
-    --rotate: 360deg;
-  }
-}
-
-a {
-  color: #212534;
-  text-decoration: none;
-  font-family: sans-serif;
+label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-  margin-top: 2rem;
 }
 
-.user {
-  color: white;
-  font-size: 24px;
-  font-family: "Titan One", cursive;
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
+
+input[type="submit"] {
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+.response-area {
+  margin-top: 20px;
+  background-color: #f0f0f0;
+
+  padding: 20px 5px;
+}
+
+#get {
+  background-color: #2ecc71;
+}
+
+#get:hover {
+  background-color: #27ae60;
+}
+
+#post {
+  background-color: #3498db;
+}
+
+#post:hover {
+  background-color: #2980b9;
+}
+
+#put {
+  background-color: #9b59b6;
+}
+
+#put:hover {
+  background-color: #8e44ad;
+}
+
+#patch {
+  background-color: #f1c40f;
+}
+
+#patch:hover {
+  background-color: #f39c12;
+}
+
+#delete {
+  background-color: #e74c3c;
+}
+
+#delete:hover {
+  background-color: #c0392b;
+}
+
+
