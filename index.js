@@ -19,10 +19,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", async (req, res)  => {
- 
+  var currentdate = new Date();
+  var datetime = currentdate.getFullYear() + "-" +
+                "0"+ (currentdate.getMonth()+1) + "-" +
+               "0" + currentdate.getDate() + "T" 
+                + currentdate.getHours() + ":" + currentdate.getMinutes()
+  console.log(datetime)
 
   res.render("index");
-
+  
 
   })
 
@@ -31,7 +36,7 @@ app.get("/", async (req, res)  => {
   
     const lattitude = req.body.longitude
     const longitude = req.body.lattitude
-  
+   
     if (!lattitude || !longitude) {
       return res.render('index', { error: 'Enter lattitude and longittude' });
     }
@@ -62,7 +67,7 @@ app.get("/", async (req, res)  => {
    
     
     if (!ipaddress) {
-      return res.render('index', { error: 'Enter an ipaddress' });
+      return res.render('index', { error: 'Enter an ip address' });
     }
   
     try {
