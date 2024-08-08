@@ -18,7 +18,7 @@
   <% }else{   %>
 
   
-    <% if (locals.lattitude && locals.longitude ) { %>
+    <% if (locals.uvFactor ) { %>
     <h1> Uv factor is <%= uvFactor %> </h1>
   <% if (uvFactor <= 5) { %>
 
@@ -29,9 +29,19 @@
     </h2>
     <% } %>
   
+    <% } else if (locals.uvFactorTwo) { %>
+      <h1> Uv factor is <%= uvFactorTwo %> in <%=country%>, <%=city%> </h1>
+      <% if (uvFactorTwo <= 5) { %>
+
+        <h2> No sun screen is needed today </h2>
+        <% } else { %>
+          <h2> 
+           Sunscreen should be applied
+          </h2>
+          <% } %>
     <% } else { %>
       <h2 id="parametars"> 
-     Please enter both fields with parametar
+     Enter longitude and lattitude for uv factor, or enter ip address of city
        </h2>
     <% } %>
     <% } %>
@@ -49,7 +59,16 @@
    
   </form>
 </div>
+</div>
 
+<form action="/ipaddress" method="post">
+  <label for="headline">Enter iP address</label>
+  <input type="text" id="idInput" name="ipaddress" >
+
+<input id="post" type="submit" value="POST" >
+ 
+</form>
+</div>
    
   <script src="index.js" type="module"></script>   
 </body>

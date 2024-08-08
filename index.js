@@ -33,7 +33,7 @@ app.get("/", async (req, res)  => {
     const longitude = req.body.lattitude
   
     if (!lattitude || !longitude) {
-      return res.render('index', { error: 'Both latitude and longitude are required.' });
+      return res.render('index', { error: 'Enter lattitude and longittude' });
     }
   
     try {
@@ -56,7 +56,55 @@ app.get("/", async (req, res)  => {
     }
   });
 
- 
+  app.post('/ipaddress',async(req,res,next) => {
+  
+    const ipaddress = req.body.ipaddress
+   
+    
+    if (!ipaddress) {
+      return res.render('index', { error: 'Enter an ipaddress' });
+    }
+  
+    try {
+      const response = await axios.get('https://api.ip2location.io/', {
+        params: {
+          key: 'C1DCFBD53D19C1DD0C79185899A84057',
+          ip: ipaddress
+        },
+       
+      });
+  
+      const lat = response.data.longitude;
+      const long = response.data.latitude;
+      const city = response.data.city_name;
+      const country  = response.data.country_name;
+      console.log(lat,long,city);
+      
+      try {
+        const response = await axios.get('https://api.openuv.io/api/v1/uv', {
+          params: {
+            lat: lat,
+            lng: long
+          },
+          headers: {
+            'x-access-token': 'openuv-es06rlzidh358-io',
+          }
+        });
+    
+        const uvFactorTwo = response.data.result.uv;
+        
+        console.log(uvFactorTwo);
+        res.render('index', { uvFactorTwo,city,country});
+      } catch (error) {
+        console.error(error);
+        res.render('index', { error: 'Error fetching data. Please try again later.' });
+      }
+    
+    } catch (error) {
+      console.error(error);
+      res.render('index', { error: 'Error fetching  data. Please try again' });
+    }
+  });
 
 
 
