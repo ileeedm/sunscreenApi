@@ -31,13 +31,14 @@
   
     <% } else if (locals.uvFactorTwo) { %>
       <h1> Uv factor is <%= uvFactorTwo %> in <%=country%>, <%=city%> </h1>
+      <h2>The temperature is <%= temperature %>°C</h2>
       <% if (uvFactorTwo <= 5) { %>
 
         <h2> No sun screen is needed today </h2>
         <% } else { %>
-          <h2> 
+          <p class = "sunscreen"> 
            Sunscreen should be applied
-          </h2>
+          </p>
           <% } %>
     <% } else { %>
       <h2 id="parametars"> 

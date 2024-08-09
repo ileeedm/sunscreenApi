@@ -19,18 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", async (req, res)  => {
-  var currentdate = new Date();
-  var datetime = currentdate.getFullYear() + "-" +
-                "0"+ (currentdate.getMonth()+1) + "-" +
-               "0" + currentdate.getDate() + "T" 
-                + currentdate.getHours() + ":" + currentdate.getMinutes()
-  console.log(datetime)
+ 
 
   res.render("index");
   
 
   })
 
+  
+  
+    //App for uv from langitude and latitude
   
   app.post('/',async(req,res,next) => {
   
@@ -51,7 +49,7 @@ app.get("/", async (req, res)  => {
           'x-access-token': 'openuv-es06rlzidh358-io',
         }
       });
-  
+        
       const uvFactor = response.data.result.uv;
       console.log(uvFactor);
       res.render('index', { uvFactor, lattitude, longitude });
@@ -61,6 +59,15 @@ app.get("/", async (req, res)  => {
     }
   });
 
+  
+  
+  
+  
+  
+  
+  //App for temperature,city and uv factor from ip address
+  
+  
   app.post('/ipaddress',async(req,res,next) => {
   
     const ipaddress = req.body.ipaddress
@@ -99,11 +106,41 @@ app.get("/", async (req, res)  => {
         const uvFactorTwo = response.data.result.uv;
         
         console.log(uvFactorTwo);
-        res.render('index', { uvFactorTwo,city,country});
+       
+        
+        var currentdate = new Date();
+        const datetime = currentdate.getFullYear() + "-" +
+                      "0"+ (currentdate.getMonth()+1) + "-" +
+                     "0" + currentdate.getDate() + "T" 
+                      + currentdate.getHours() + ":" + currentdate.getMinutes()
+        console.log(datetime)
+
+            try {
+              const responseTwo = await axios.get('https://api.open-meteo.com/v1/forecast', {
+                params: {
+                  latitude: lat,
+                  longitude: long,
+                  hourly: 'temperature_2m',
+                  start_hour: datetime,
+                  end_hour: datetime
+                },
+              
+              });
+          
+              const temperature = responseTwo.data.hourly.temperature_2m[0]
+              console.log(temperature);
+              res.render('index', { uvFactorTwo,city,country,temperature});
+             
+            } catch (error) {
+              console.error(error);
+              res.render('index', { error: 'Error fetching data. Please try again later.' });
+          }
+   
       } catch (error) {
         console.error(error);
         res.render('index', { error: 'Error fetching data. Please try again later.' });
-      }
+   }
+
     
     } catch (error) {
       console.error(error);

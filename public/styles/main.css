@@ -68,7 +68,11 @@ input[type="submit"] {
   cursor: pointer;
   font-size: 16px;
 }
-
+.sunscreen{
+  color: rgb(245, 245, 21);
+  font-size: x-large;
+  margin-bottom: 20px;
+}
 
 .response-area {
   margin-top: 20px;
