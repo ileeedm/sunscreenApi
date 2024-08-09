@@ -120,16 +120,20 @@ app.get("/", async (req, res)  => {
                 params: {
                   latitude: lat,
                   longitude: long,
-                  hourly: 'temperature_2m',
+                  hourly: ['temperature_2m','wind_speed_10m','relative_humidity_2m'],
                   start_hour: datetime,
-                  end_hour: datetime
+                  end_hour: datetime,
+                  
                 },
               
               });
           
               const temperature = responseTwo.data.hourly.temperature_2m[0]
+              const wind = responseTwo.data.hourly.wind_speed_10m[0]
+              const humidity = responseTwo.data.hourly.relative_humidity_2m[0]
               console.log(temperature);
-              res.render('index', { uvFactorTwo,city,country,temperature});
+              console.log(wind);
+              res.render('index', { uvFactorTwo,city,country,temperature,wind,humidity});
              
             } catch (error) {
               console.error(error);

@@ -31,7 +31,7 @@
   
     <% } else if (locals.uvFactorTwo) { %>
       <h1> Uv factor is <%= uvFactorTwo %> in <%=country%>, <%=city%> </h1>
-      <h2>The temperature is <%= temperature %>°C</h2>
+      <h2>The temperature is <%= temperature %>°C, wind speed is <%= wind %> km/h,humdity is <%=humdity %></h2>
       <% if (uvFactorTwo <= 5) { %>
 
         <h2> No sun screen is needed today </h2>
@@ -42,7 +42,7 @@
           <% } %>
     <% } else { %>
       <h2 id="parametars"> 
-     Enter longitude and lattitude for uv factor, or enter ip address of city
+     Enter longitude and lattitude for uv factor, or enter ip address of city 
        </h2>
     <% } %>
     <% } %>
